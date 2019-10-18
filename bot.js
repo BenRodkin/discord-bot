@@ -95,3 +95,18 @@ client.on('message', msg => {
     }
 
 });
+
+
+//Ping system (To keep the bot online 24/7)
+const http = require('http');
+const espress = require('express');
+const app = express();
+app.ger("/", (request, response) => {
+	console.log(Date.now() + " Ping Recieved");
+	response.sendStatus(200);
+});
+app.listen(process.env.PORT);
+setInterval(() => {
+	http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
+}, 255000);
+//End of ping system
